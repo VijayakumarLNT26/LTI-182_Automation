@@ -47,8 +47,8 @@
 						io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 					</argLine>
 					<systemPropertyVariables>
-						<!-- <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory> -->
-						<allure.results.directory>C:\Users\10695100\Documents\Breathe Life\BDD_Testing\BLBddProject\target\allure-results</allure.results.directory>
+						<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+						<!-- <allure.results.directory>C:\Users\10695100\Documents\Breathe Life\BDD_Testing\BLBddProject\target\allure-results</allure.results.directory> -->
 						<allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>
 						<allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
 					</systemPropertyVariables>

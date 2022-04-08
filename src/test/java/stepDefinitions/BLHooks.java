@@ -18,61 +18,50 @@ import io.cucumber.java.Before;
 public class BLHooks {
 
 	public Properties prop;
-	public final String configFilePath  = "Configs//Config.properties";
+	public final String configFilePath = "Configs//Config.properties";
 	public static WebDriver driver;
-	public TestBase testBase=new TestBase();;
-	
-	
-	@Before(order =1)
-	public void initializeTest()
-	{
+	public TestBase testBase = new TestBase();;
+
+	@Before(order = 1)
+	public void initializeTest() {
 
 		BufferedReader reader;
-		
-		try
-		{
+
+		try {
 			reader = new BufferedReader(new FileReader(configFilePath));
 			prop = new Properties();
-			try
-			{
+			try {
 				prop.load(reader);
 				reader.close();
-			}
-			catch(IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		}
-		catch(FileNotFoundException e)
-		{
+
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Config.properties file not found at: "+configFilePath);
+			throw new RuntimeException("Config.properties file not found at: " + configFilePath);
 		}
-		
-		//testBase.configReader(configFilePath);
+
+		// testBase.configReader(configFilePath);
 	}
-	
-	@Before(order=2)
-	public void setupUrl() throws Exception
-	{
+
+	@Before(order = 2)
+	public void setupUrl() throws Exception {
 		testBase.configReader();
-		
-		if(prop.getProperty("browserStack").contains("Y"))
-		{
+
+		if (prop.getProperty("browserStack").contains("Y")) {
 			testBase.browserStacklaunch();
 		}
-		
-		else
-		{
-			//testBase.configReader(configFilePath);
+
+		else {
+			// testBase.configReader(configFilePath);
 			testBase.selectBrowser(prop.getProperty("browser"));
 		}
 	}
+
 	@After
-	public void endTest()
-	{
-		testBase.driver.close();
+	public void endTest() {
+		TestBase.driver.close();
 	}
-	
+
 }
